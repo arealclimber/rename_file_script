@@ -24,14 +24,16 @@ rename_file_script
 ## Usage
 
 1. Ensure you have Python 3.x installed.
-2. Download the `main.py` file.
-3. Run the script:
+2. Download the `rename_file_script` folder.
+3. Create a folder named `input` and place your files in it.
+4. Run the script:
 
    ```
+   cd rename_file_script
    python3 main.py
    ```
 
-4. When prompted, enter the desired prefix for the renamed files (or press Enter to use the default "report_thumbnail").
+5. When prompted, enter the desired prefix for the renamed files (or press Enter to use the default "report_thumbnail").
 
 ## Notes
 
