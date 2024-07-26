@@ -14,7 +14,7 @@ This is a simple Python script for batch renaming files and moving them from one
 ## Folder Structure
 
 ```
-rename_file_name
+rename_file_script
 ├─ 📁input
 ├─ 📁output
 ├─ 📄README.md
