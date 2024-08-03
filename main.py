@@ -1,5 +1,12 @@
 import os
 import shutil
+import re  
+
+
+def extract_number(filename):
+    # 使用正則表達式從檔名中提取數字
+    match = re.search(r'\d+', filename)
+    return int(match.group()) if match else 0
 
 # Fixed input and output folders
 def rename_and_move_files(source_folder, destination_folder, prefix):
@@ -16,23 +23,21 @@ def rename_and_move_files(source_folder, destination_folder, prefix):
     # Define files to exclude
     excluded_files = ['.DS_Store']
 
-    # Get all files from the source folder, excluding specified files
+    # 獲取所有文件並按檔名中的數字排序
     files = [f for f in os.listdir(source_folder) if os.path.isfile(os.path.join(source_folder, f)) and f not in excluded_files]
+    files.sort(key=extract_number)
 
-    # Sort file names
-    files.sort()
-
-    # Rename files and move to destination folder
+    # 重命名文件並移動到目標文件夾
     for index, file in enumerate(files, start=1):
         old_path = os.path.join(source_folder, file)
-        new_name = f"{prefix}_{index}{os.path.splitext(file)[1]}"
+        new_name = f"{prefix}_{index:02d}{os.path.splitext(file)[1]}"
         new_path = os.path.join(destination_folder, new_name)
 
         try:
             shutil.copy2(old_path, new_path)
-            print(f"Copied and renamed '{file}' to '{new_name}'")
+            print(f"已複製並重命名 '{file}' 為 '{new_name}'")
         except Exception as e:
-            print(f"Error processing '{file}': {str(e)}")
+            print(f"處理 '{file}' 時出錯：{str(e)}")
 
 # Set source and destination folder paths as relative paths
 source_folder = "input"
